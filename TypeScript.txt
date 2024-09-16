@@ -1,0 +1,84 @@
+TIPOS BASICOS 
+https://www.typescriptlang.org/docs/handbook/basic-types.html
+
+Boolean
+    let isDone: boolean = false;
+
+Number 
+    As in JavaScript, all numbers in TypeScript are either floating point values or BigIntegers. 
+    In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals.
+        let decimal: number = 6;
+        let hex: number = 0xf00d;
+        let binary: number = 0b1010;
+        let octal: number = 0o744;
+        let big: bigint = 100n;
+
+String
+    let color: string = "blue";
+    color = 'red';
+        Uso de template strings: pueden abarcar varias lineas y contener expresiones 
+        se ponen dentro del caracter backtick/backquote (`) y las expresiones en la forma ${ expr }
+            let sentence: string = `Hello, my name is ${fullName}.
+            `; 
+        Es equivalente a  
+            let sentence: string = "Hello, my name is " + fullName + ".\n\n";
+
+Array
+    let list: number[] = [1, 2, 3];
+    let list: Array<number> = [1, 2, 3];
+
+Tuple
+    Permite expresar una lista con un número fijo de elementos cuyos tipos se conocen, pero no es necesario que sean iguales 
+    // Declare a tuple type
+    let x: [string, number];
+    // Initialize it
+    x = ["hello", 10];
+         x[0]   x[1]       index
+
+Enum
+    Is a way of giving more friendly names to sets of numeric values.
+        enum Color { Red, Green, Blue, }
+        let c: Color = Color.Green;
+    By default, enums begin numbering their members starting at 0. 
+    You can change this by manually setting the value of one of its members.
+        enum Color { Red = 1, Green, Blue, }
+    Even manually set all the values in the enum:
+        enum Color { Red = 1, Green = 2, Blue = 4, }
+    You can also go from a numeric value to the name of that value in the enum:
+        let colorName: string = Color[2];
+        console.log(colorName);             // Displays 'Green'
+
+Unknown
+    https://www.typescriptlang.org/docs/handbook/basic-types.html#unknown
+    declare const maybe: unknown;
+    if (typeof maybe === "string") { ...
+
+Any
+    https://www.typescriptlang.org/docs/handbook/basic-types.html#any
+    let looselyTyped: any = 4;
+    // OK, ifItExists might exist at runtime
+    looselyTyped.ifItExists();
+
+Void
+    function warnUser(): void { ...
+
+Null and Undefined
+    https://www.typescriptlang.org/docs/handbook/basic-types.html#null-and-undefined
+    when using the strictNullChecks flag, null and undefined are only assignable to unknown, any and ...
+
+Never
+    The never type represents the type of values that never occur. 
+
+Object
+    object is a type that represents the non-primitive type
+        declare function create(o: object | null): void;
+    Generally, you won’t need to use this.
+
+Type assertions  (afirmaciones de tipo)
+    A type assertion is like a type cast in other languages, but it performs no special checking or restructuring of data. 
+    It has no runtime impact and is used purely by the compiler. 
+        as-syntax:
+            let someValue: unknown = "this is a string";
+            let strLength: number = (someValue as string).length;
+        “angle-bracket” syntax:
+            let strLength: number = (<string>someValue).length;
